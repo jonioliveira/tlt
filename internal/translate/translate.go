@@ -3,7 +3,6 @@ package translate
 import (
 	"context"
 	"fmt"
-	"log"
 
 	translate "cloud.google.com/go/translate/apiv3"
 	"golang.org/x/text/language"
@@ -14,13 +13,12 @@ import (
 func Do(ctx context.Context, credentials []byte, text string, source string, dest string) (string, error) {
 	client, err := translate.NewTranslationClient(ctx, option.WithCredentialsJSON(credentials))
 	if err != nil {
-		log.Fatalf("Failed to create client: %v", err)
+		return "", err
 	}
 	defer client.Close()
 
 	target, err := language.Parse(dest)
 	if err != nil {
-		log.Fatalf("Failed to parse target language: %v", err)
 		return "", err
 	}
 
@@ -32,7 +30,6 @@ func Do(ctx context.Context, credentials []byte, text string, source string, des
 		Parent:             fmt.Sprintf("projects/%s/locations/global", "translate-329709"),
 	})
 	if err != nil {
-		log.Fatalf("Failed to translate text: %v", err)
 		return "", err
 	}
 
