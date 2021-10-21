@@ -59,3 +59,5 @@ Temporary Items
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/go,macos,vscode
+
+*sa.json
