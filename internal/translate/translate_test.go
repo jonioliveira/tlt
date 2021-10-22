@@ -1,4 +1,4 @@
-package translate
+package translate_test
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/jonioliveira/tlt/internal/translate"
 	"github.com/stretchr/testify/require"
 )
 
@@ -35,7 +36,7 @@ func TestDoTranslation(t *testing.T) {
 }
 
 func testInvalidKey(t *testing.T, r *require.Assertions, ctx context.Context) {
-	_, err := Do(ctx, []byte{}, "Hello World", "PT", "EN")
+	_, err := translate.Do(ctx, []byte{}, "Hello World", "PT", "EN")
 	r.Error(err)
 }
 
@@ -43,7 +44,7 @@ func testValid(t *testing.T, r *require.Assertions, ctx context.Context) {
 	creds, err := getCreds()
 	r.NoError(err)
 
-	result, err := Do(ctx, creds, "Hello World", "PT", "EN")
+	result, err := translate.Do(ctx, creds, "Hello World", "PT", "EN")
 
 	r.Equal(result, "Olá Mundo")
 	r.NoError(err)
