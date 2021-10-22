@@ -23,24 +23,24 @@ func getCreds() ([]byte, error) {
 
 func TestDoTranslation(t *testing.T) {
 	t.Parallel()
-	for scenario, fn := range map[string]func(t *testing.T, r *require.Assertions, ctx context.Context){
+	for scenario, fn := range map[string]func(ctx context.Context, t *testing.T, r *require.Assertions){
 		"Invalid Key": testInvalidKey,
 		"Valid":       testValid,
 	} {
 		t.Run(scenario, func(st *testing.T) {
 			r := require.New(st)
 			ctx := context.Background()
-			fn(st, r, ctx)
+			fn(ctx, st, r)
 		})
 	}
 }
 
-func testInvalidKey(t *testing.T, r *require.Assertions, ctx context.Context) {
+func testInvalidKey(ctx context.Context, t *testing.T, r *require.Assertions) {
 	_, err := translate.Do(ctx, []byte{}, "Hello World", "PT", "EN")
 	r.Error(err)
 }
 
-func testValid(t *testing.T, r *require.Assertions, ctx context.Context) {
+func testValid(ctx context.Context, t *testing.T, r *require.Assertions) {
 	creds, err := getCreds()
 	r.NoError(err)
 
