@@ -36,7 +36,7 @@ func TestDoTranslation(t *testing.T) {
 }
 
 func testInvalidKey(ctx context.Context, t *testing.T, r *require.Assertions) {
-	_, err := translate.Do(ctx, []byte{}, "Hello World", "PT", "EN")
+	_, err := translate.Do(ctx, []byte{}, "Hello World", "EN", "PT")
 	r.Error(err)
 }
 
@@ -44,8 +44,8 @@ func testValid(ctx context.Context, t *testing.T, r *require.Assertions) {
 	creds, err := getCreds()
 	r.NoError(err)
 
-	result, err := translate.Do(ctx, creds, "Hello World", "PT", "EN")
+	result, err := translate.Do(ctx, creds, "Hello World", "EN", "PT")
 
-	r.Equal(result, "Olá Mundo")
 	r.NoError(err)
+	r.Equal("Olá Mundo", result)
 }

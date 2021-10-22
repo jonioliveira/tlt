@@ -33,5 +33,5 @@ func Do(ctx context.Context, credentials []byte, text string, source string, des
 		return "", err
 	}
 
-	return translation.String(), nil
+	return translation.Translations[0].TranslatedText, nil
 }
