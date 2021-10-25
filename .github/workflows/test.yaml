@@ -21,4 +21,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Test
-        run: TRANSLATION_API_CREDS=${{secrets.TRANSLATION_API_CREDS}} go test ./...
+        env:
+          TRANSLATION_API_CREDS: ${{ secrets.TRANSLATION_API_CREDS }}
+        run: go test ./...
