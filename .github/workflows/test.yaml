@@ -1,10 +1,16 @@
-on: [push, pull_request]
 name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.14.x, 1.15.x]
+        go-version: [1.17.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -15,4 +21,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Test
+        env:
+          TRANSLATION_API_CREDS: ${{ secrets.TRANSLATION_API_CREDS }}
         run: go test ./...
