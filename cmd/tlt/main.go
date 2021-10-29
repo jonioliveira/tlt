@@ -1,37 +1,39 @@
 package main
 
 import (
-	"context"
-	"encoding/base64"
 	"fmt"
 	"os"
 
-	"github.com/jonioliveira/tlt/internal/translate"
+	cmd "github.com/jonioliveira/tlt/internal/cmd/root"
 )
 
 func main() {
-	ctx := context.Background()
-	creds, err := getCreds()
-	if err != nil {
-		fmt.Println(err)
+	if err := cmd.GetRootCmd().Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-	result, err := translate.Do(ctx, creds, "Ola", "PT", "EN")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	// ctx := context.Background()
+	// creds, err := getCreds()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	os.Exit(1)
+	// }
+	// result, err := translate.Do(ctx, creds, "Ola", "PT", "EN")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	os.Exit(1)
+	// }
 
-	fmt.Println(result)
+	// fmt.Println(result)
 }
 
-func getCreds() ([]byte, error) {
-	encodedCreds := os.Getenv("TRANSLATION_API_CREDS")
+// func getCreds() ([]byte, error) {
+// 	encodedCreds := os.Getenv("TRANSLATION_API_CREDS")
 
-	creds, err := base64.StdEncoding.DecodeString(encodedCreds)
-	if err != nil {
-		return nil, err
-	}
+// 	creds, err := base64.StdEncoding.DecodeString(encodedCreds)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return creds, nil
-}
+// 	return creds, nil
+// }
