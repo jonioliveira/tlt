@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/jonioliveira/tlt/compare/v0.2.0...v0.3.0) (2021-10-30)
+
+
+### Features
+
+* add translate command ([#5](https://github.com/jonioliveira/tlt/issues/5)) ([2e6a59f](https://github.com/jonioliveira/tlt/commit/2e6a59ff62f2ffee4b8bb73d03e9fe247829d114))
+
+
+
 # [0.2.0](https://github.com/jonioliveira/tlt/compare/v0.1.1...v0.2.0) (2021-10-30)
 
 
