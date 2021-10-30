@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/jonioliveira/tlt/compare/v0.1.1...v0.2.0) (2021-10-30)
+
+
+### Features
+
+* add version command ([#4](https://github.com/jonioliveira/tlt/issues/4)) ([34729c9](https://github.com/jonioliveira/tlt/commit/34729c95f4473c2a83605ef5e10ba8c5132a3cba))
+
+
+
 ## [0.1.1](https://github.com/jonioliveira/tlt/compare/v0.1.0...v0.1.1) (2021-10-29)
 
 
