@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	cmd "github.com/jonioliveira/tlt/internal/cmd/root"
+	"github.com/jonioliveira/tlt/internal/cmd"
 )
 
 func main() {
-	if err := cmd.GetRootCmd().Execute(); err != nil {
+	rootCmd := cmd.GetRootCmd()
+	rootCmd.AddCommand(cmd.GetVersionCmd())
+	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
